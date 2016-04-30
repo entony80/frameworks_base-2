@@ -124,7 +124,6 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
             mBattery.setAlpha(newAlphaBC);
             mClock.setAlpha(newAlphaBC);
             mMinitBattery.setAlpha(newAlphaBC);
-            mAicpLogo.setAlpha(newAlphaBC);
         }
     }
 }

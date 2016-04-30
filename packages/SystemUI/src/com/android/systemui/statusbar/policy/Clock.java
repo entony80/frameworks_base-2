@@ -220,8 +220,6 @@ public class Clock extends TextView implements DemoMode {
                 updateSettings();
                 return;
             }
-            updateClock();
-            }
         }
     };
 
