@@ -820,7 +820,6 @@ public final class ShutdownThread extends Thread {
                     if (message != null) {
                         mChaosBusyDialog.setMessage(message);
                     }
-                }
             }
         });
     }
