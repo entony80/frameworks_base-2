@@ -166,7 +166,6 @@ import com.android.systemui.qs.QSDragPanel;
 import com.android.systemui.recents.ScreenPinningRequest;
 import com.android.systemui.screenshot.TakeScreenshotService;
 import com.android.systemui.statusbar.ActivatableNotificationView;
-import com.android.systemui.statusbar.AppSidebar;
 import com.android.systemui.statusbar.BackDropView;
 import com.android.systemui.statusbar.BarTransitions;
 import com.android.systemui.statusbar.BaseStatusBar;
