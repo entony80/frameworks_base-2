@@ -623,9 +623,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.BATTERY_SAVER_MODE_COLOR),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_SIDEBAR_POSITION),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_NUM_TILE_COLUMNS), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -745,16 +742,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     mNotificationPanel.setTaskManagerEnabled(showTaskManager);
                 }
             }
-
-            int sidebarPosition = Settings.System.getInt(resolver,
-                    Settings.System.APP_SIDEBAR_POSITION,
-                    AppSidebar.SIDEBAR_POSITION_LEFT);
-            if (sidebarPosition != mSidebarPosition) {
-                mSidebarPosition = sidebarPosition;
-                removeSidebarView();
-                addSidebarView();
-            }
-
         }
     }
 
@@ -3993,28 +3980,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 // detach PA Pie when screen is turned off
                 if (mPieController != null) mPieController.detachPie();
             }
-            else if (Intent.ACTION_CONFIGURATION_CHANGED.equals(action)) {
-                Configuration config = mContext.getResources().getConfiguration();
-                try {
-                    // position app sidebar on left if in landscape orientation and device has a navbar
-                    ContentResolver resolver = mContext.getContentResolver();
-                    boolean sidebarEnabled = Settings.System.getInt(
-                        resolver, Settings.System.APP_SIDEBAR_ENABLED, 0) == 1;
-                    if (sidebarEnabled
-                        && mWindowManagerService.hasNavigationBar()
-                        && config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                            mWindowManager.updateViewLayout(mAppSidebar,
-                                getAppSidebarLayoutParams(AppSidebar.SIDEBAR_POSITION_LEFT));
-                            mHandler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mAppSidebar.setPosition(AppSidebar.SIDEBAR_POSITION_LEFT);
-                                }
-                            }, 500);
-                    }
-                } catch (RemoteException e) {
-                }
-            }
             else if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 mScreenOn = true;
                 notifyNavigationBarScreenOn(true);
@@ -4364,7 +4329,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mNavigationBarView.onRecreateStatusbar();
             }
             observer.update();
-            addSidebarView();
         } else {
             loadDimens();
         }
