@@ -3944,6 +3944,12 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_SCREEN_SHOW_WEATHER = "lock_screen_show_weather";
+		
+		/**
+         * Whether to show the weather update timestamp on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_SHOW_WEATHER_TIMESTAMP = "lock_screen_show_weather_timestamp";
 
         /**
          * Whether to show the weather location on the lock screen
