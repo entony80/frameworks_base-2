@@ -998,6 +998,7 @@ public final class PowerManagerService extends SystemService
                     Slog.d(TAG, "releaseWakeLockInternal: lock=" + Objects.hashCode(lock)
                             + " [not found], flags=0x" + Integer.toHexString(flags));
                 }
+                return;
             }
 
             WakeLock wakeLock = mWakeLocks.get(index);
